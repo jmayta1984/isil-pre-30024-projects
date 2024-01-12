@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GeoQuiz</string>
+    <string name="question">La capital de Perú es Lima</string>
+    <string name="yes_option">Si</string>
+    <string name="no_option">No</string>
+    <string name="previous_bt">Anterior</string>
+    <string name="next_bt">Siguiente</string>
+    <string name="score_bt">Puntaje</string>
+</resources>

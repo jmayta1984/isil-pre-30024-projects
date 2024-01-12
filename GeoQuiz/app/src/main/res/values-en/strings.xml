@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GeoQuiz</string>
+    <string name="question">Lima is the capital of Peru</string>
+    <string name="yes_option">Yes</string>
+    <string name="no_option">No</string>
+    <string name="previous_bt">Previous</string>
+    <string name="next_bt">Next</string>
+    <string name="score_bt">Score</string>
+</resources>
