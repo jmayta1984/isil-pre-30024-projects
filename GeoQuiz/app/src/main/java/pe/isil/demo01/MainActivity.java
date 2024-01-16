@@ -1,9 +1,10 @@
 package pe.isil.demo01;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,7 +18,14 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Question> questions;
 
-    private int actualPosition, score;
+    private int actualPosition = 0, score = 0;
+
+    private static final String TAG = "MainActivity";
+
+    private static final String KEY_ACTUAL_POSITION = "actual_position";
+
+    private static final String KEY_SCORE = "score";
+
 
     private void initViews() {
         btYes = findViewById(R.id.btYes);
@@ -45,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         btScore.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), ScoreActivity.class);
-            intent.putExtra("score", score);
+            intent.putExtra(KEY_SCORE, score);
             startActivity(intent);
         });
 
@@ -54,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
     private void loadQuestions() {
 
         questions = new ArrayList<>();
-        actualPosition = 0;
-        score = 0;
 
         Question questionPeru = new Question("La capital de Perú es Lima", true);
         questions.add(questionPeru);
@@ -102,7 +108,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate() called");
+
         setContentView(R.layout.activity_main);
+
+        if (savedInstanceState != null) {
+            actualPosition = savedInstanceState.getInt(KEY_ACTUAL_POSITION, 0);
+            score = savedInstanceState.getInt(KEY_SCORE, 0);
+        }
+
 
         initViews();
         initViewListeners();
@@ -111,5 +125,41 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart() called");
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume() called");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause() called");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop() called");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() called");
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(TAG, "onSaveInstanceState() called");
+        outState.putInt(KEY_ACTUAL_POSITION, actualPosition);
+        outState.putInt(KEY_SCORE, score);
+    }
 }

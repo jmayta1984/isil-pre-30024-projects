@@ -14,9 +14,11 @@ public class ScoreActivity extends AppCompatActivity {
         tvScore = findViewById(R.id.tvScore);
     }
 
+    private static final String KEY_SCORE = "score";
+
     private void showScore() {
         Intent intent = getIntent();
-        int score = intent.getIntExtra("score",0);
+        int score = intent.getIntExtra(KEY_SCORE, 0);
         tvScore.setText(String.valueOf(score));
     }
 
