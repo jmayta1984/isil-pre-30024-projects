@@ -19,7 +19,8 @@ public class ContactsActivity extends AppCompatActivity {
 
     private void loadContacts() {
         contacts = new ArrayList<>();
-
+        contacts.add(new Contact("Luis Zapata", "987645132", "lzapata@gmail.com"));
+        contacts.add(new Contact("Pedro Campos", "965841712", "pcampos@gmail.com"));
     }
 
     @Override
