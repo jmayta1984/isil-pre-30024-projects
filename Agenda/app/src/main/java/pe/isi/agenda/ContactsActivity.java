@@ -1,6 +1,7 @@
 package pe.isi.agenda;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -13,6 +14,7 @@ public class ContactsActivity extends AppCompatActivity {
 
     private ArrayList<Contact> contacts;
 
+
     private void initViews() {
         rvContacts = findViewById(R.id.rvContacts);
     }
@@ -23,6 +25,14 @@ public class ContactsActivity extends AppCompatActivity {
         contacts.add(new Contact("Pedro Campos", "965841712", "pcampos@gmail.com"));
     }
 
+    private void setupAdapter() {
+        ContactAdapter contactAdapter;
+        contactAdapter = new ContactAdapter(contacts);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        rvContacts.setLayoutManager(layoutManager);
+        rvContacts.setAdapter(contactAdapter);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,5 +40,6 @@ public class ContactsActivity extends AppCompatActivity {
 
         initViews();
         loadContacts();
+        setupAdapter();
     }
 }
