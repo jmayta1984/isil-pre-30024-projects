@@ -1,5 +1,7 @@
 package pe.isi.agenda;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,8 +21,30 @@ public class ContactsActivity extends AppCompatActivity {
 
     private ArrayList<Contact> contacts;
 
-    private static final int REQUEST_CODE = 1;
+    private ContactAdapter contactAdapter;
 
+    private ActivityResultLauncher<Intent> launcher;
+
+    private static final String KEY_NAME = "name";
+    private static final String KEY_PHONE = "phone";
+    private static final String KEY_EMAIL = "email";
+
+    private void registerLauncher() {
+        launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Intent intent = result.getData();
+                        if (intent != null) {
+                            String name = intent.getStringExtra(KEY_NAME);
+                            String phone = intent.getStringExtra(KEY_PHONE);
+                            String email = intent.getStringExtra(KEY_EMAIL);
+                            Contact contact = new Contact(name, phone, email);
+                            contacts.add(contact);
+                            contactAdapter.notifyItemInserted(contacts.size() - 1);
+                        }
+                    }
+                });
+    }
 
     private void initViews() {
         rvContacts = findViewById(R.id.rvContacts);
@@ -29,8 +53,8 @@ public class ContactsActivity extends AppCompatActivity {
 
     private void initViewListeners() {
         faAdd.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), ContactActivity.class);
-            startActivityIfNeeded(intent, 1);
+            Intent intent = new Intent(ContactsActivity.this, ContactActivity.class);
+            launcher.launch(intent);
         });
     }
 
@@ -41,7 +65,6 @@ public class ContactsActivity extends AppCompatActivity {
     }
 
     private void setupAdapter() {
-        ContactAdapter contactAdapter;
         contactAdapter = new ContactAdapter(contacts);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rvContacts.setLayoutManager(layoutManager);
@@ -53,6 +76,7 @@ public class ContactsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
 
+        registerLauncher();
         initViews();
         initViewListeners();
         loadContacts();
