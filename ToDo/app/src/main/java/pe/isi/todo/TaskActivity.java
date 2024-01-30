@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 public class TaskActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,4 +16,5 @@ public class TaskActivity extends AppCompatActivity {
         Fragment fragment = new TaskFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.flBody, fragment).commit();
     }
+
 }

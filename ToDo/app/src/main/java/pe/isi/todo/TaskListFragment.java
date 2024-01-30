@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -20,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TaskListFragment extends Fragment {
 
@@ -33,6 +32,8 @@ public class TaskListFragment extends Fragment {
     private ActivityResultLauncher<Intent> launcher;
 
     private static final String KEY_NAME = "name";
+    private static final String KEY_DATE = "date";
+
 
     private void registerLauncher() {
         launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -41,8 +42,12 @@ public class TaskListFragment extends Fragment {
                         Intent intent = result.getData();
                         if (intent != null) {
                             String name = intent.getStringExtra(KEY_NAME);
+                            long date = intent.getLongExtra(KEY_DATE, 0);
                             Task task = new Task();
                             task.setTitle(name);
+                            task.setDate(new Date(date));
+                            tasks.add(task);
+                            taskAdapter.notifyItemChanged(tasks.size() - 1);
                         }
                     }
                 });
