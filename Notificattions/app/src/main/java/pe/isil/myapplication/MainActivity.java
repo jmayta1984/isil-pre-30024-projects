@@ -22,7 +22,7 @@ import java.util.UUID;
 public class MainActivity extends AppCompatActivity {
 
     private Button btNotification;
-    private static final String CHANNEL_ID = "chaNnel001";
+    private static final String CHANNEL_ID = "channel001";
 
 
     private void initViews() {
