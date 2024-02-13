@@ -1,5 +1,6 @@
 package pe.isil.inventory;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -8,11 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ProductPrototype extends RecyclerView.ViewHolder {
     private TextView tvName, tvBrand, tvQuantity;
-    private Product product;
-
 
     public void bindTo(Product product) {
-        this.product = product;
         tvName.setText(product.getName());
         tvBrand.setText(product.getBrand());
         tvQuantity.setText(String.valueOf(product.getStock()));

@@ -2,6 +2,7 @@
     <string name="app_name">Inventory</string>
     <string name="hint_name">Name</string>
     <string name="hint_quantity">Quantity</string>
+    <string name="bt_delete">Delete</string>
 
     <string-array name="brands_array">
         <item>Toshiba</item>
