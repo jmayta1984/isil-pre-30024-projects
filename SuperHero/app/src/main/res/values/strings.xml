@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SuperHero</string>
+    <string name="bt_search_hero">Search hero</string>
+    <string name="hint_hero_name">Enter hero name</string>
+</resources>
