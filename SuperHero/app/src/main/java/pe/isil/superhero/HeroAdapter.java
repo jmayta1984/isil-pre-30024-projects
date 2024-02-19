@@ -13,6 +13,10 @@ public class HeroAdapter extends RecyclerView.Adapter<HeroPrototype> {
 
     private ArrayList<Hero> heroes;
 
+    public void setHeroes(ArrayList<Hero> heroes) {
+        this.heroes = heroes;
+    }
+
     public HeroAdapter(ArrayList<Hero> heroes) {
         this.heroes = heroes;
     }

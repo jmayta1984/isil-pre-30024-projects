@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btSearchHero;
     private RecyclerView rvHeroList;
     private HeroAdapter adapter;
+    private HeroRepository heroRepository;
 
     private ArrayList<Hero> heroes = new ArrayList<>();
 
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViewListeners() {
         btSearchHero.setOnClickListener(view -> {
+            heroRepository.searchHeroes(Objects.requireNonNull(etHeroName.getText()).toString());
         });
     }
 
@@ -38,6 +41,15 @@ public class MainActivity extends AppCompatActivity {
         rvHeroList.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    private void setupRepository() {
+        heroRepository = new HeroRepository();
+        heroRepository.setShowHeroesInterface(heroes -> {
+            MainActivity.this.heroes = heroes;
+            adapter.setHeroes(heroes);
+            adapter.notifyDataSetChanged();
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,5 +57,6 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         initViewListeners();
         setupRecyclerView();
+        setupRepository();
     }
 }
