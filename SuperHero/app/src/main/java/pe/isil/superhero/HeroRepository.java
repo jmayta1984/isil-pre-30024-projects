@@ -37,7 +37,7 @@ public class HeroRepository {
             }
 
             @Override
-            public void onFailure(@NonNull Call<HeroResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<HeroResponse> call, @NonNull Throwable t) {
                 Log.d("HeroRepository", t.toString());
             }
         });
