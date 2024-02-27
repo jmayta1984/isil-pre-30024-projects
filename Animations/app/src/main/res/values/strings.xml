@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Animations</string>
+    <string name="bt_blink">Blink</string>
+    <string name="bt_slide">Slide</string>
+    <string name="bt_zoom">Zoom</string>
+    <string name="bt_rotate">Rotate</string>
+</resources>
