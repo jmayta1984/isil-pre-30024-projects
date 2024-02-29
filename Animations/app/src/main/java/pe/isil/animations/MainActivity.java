@@ -3,6 +3,8 @@ package pe.isil.animations;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -21,6 +23,25 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViewListeners() {
 
+        btBlink.setOnClickListener(view -> {
+            Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.blink);
+            ivLogo.startAnimation(animation);
+        });
+
+        btSlide.setOnClickListener(view -> {
+            Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.slide);
+            ivLogo.startAnimation(animation);
+        });
+
+        btRotate.setOnClickListener(view -> {
+            Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.rotate);
+            ivLogo.startAnimation(animation);
+        });
+
+        btZoom.setOnClickListener(view -> {
+            Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.zoom);
+            ivLogo.startAnimation(animation);
+        });
     }
 
     @Override
