@@ -18,6 +18,8 @@ public class CategoryListActivity extends AppCompatActivity {
     private CategoryRepository categoryRepository;
 
     private static final String CATEGORY_NAME = "category";
+    private static final String CATEGORY_IMAGE = "image";
+    private static final String CATEGORY_DESCRIPTION = "description";
 
     private void initViews() {
         rvCategoryList = findViewById(R.id.rvCategoryList);
@@ -42,6 +44,8 @@ public class CategoryListActivity extends AppCompatActivity {
         categoryAdapter.setOnClickListener(position -> {
             Intent intent = new Intent(CategoryListActivity.this, MealListActivity.class);
             intent.putExtra(CATEGORY_NAME, categories.get(position).getName());
+            intent.putExtra(CATEGORY_IMAGE, categories.get(position).getUrlImage());
+            intent.putExtra(CATEGORY_DESCRIPTION, categories.get(position).getDescription());
             startActivity(intent);
         });
         rvCategoryList.setAdapter(categoryAdapter);

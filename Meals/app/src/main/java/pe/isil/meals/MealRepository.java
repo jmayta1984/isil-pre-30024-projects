@@ -1,5 +1,6 @@
 package pe.isil.meals;
 
+import android.app.Application;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -13,10 +14,12 @@ import retrofit2.Response;
 
 public class MealRepository {
     private final MealService mealService;
+    private final MealDao mealDao;
     private ShowMealsInterface showMealsInterface;
 
     public MealRepository() {
         mealService = MealServiceFactory.getMealService();
+        mealDao = MealDaoFactory.getMealDao();
     }
 
     public void setShowMealsInterface(ShowMealsInterface showMealsInterface) {
